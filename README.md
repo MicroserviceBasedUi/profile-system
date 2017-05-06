@@ -1,5 +1,7 @@
 # profile-system
 
+[![Build status](https://ci.appveyor.com/api/projects/status/ykhtum6bt8047h83/branch/master?svg=true)](https://ci.appveyor.com/project/lehmamic/profile-system/branch/master)
+
 ## Build
 
 On Windows:
