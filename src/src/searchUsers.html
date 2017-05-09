@@ -1,0 +1,27 @@
+<template>
+  <require from="./blur-image"></require>
+  <section class="au-animate">
+    <h2>${heading}</h2>
+    <form role="form" submit.delegate="search()">
+      <div class="form-group">
+        <label for="fn">Search term</label>
+        <input type="text" value.bind="searchTerm" class="form-control" id="fn" placeholder="search term">
+      </div>
+      <button type="submit" class="btn btn-default">Search</button>
+    </form>
+    <div class="row au-stagger">
+      <div class="col-sm-6 col-md-3 card-container au-animate" repeat.for="user of users">
+        <div class="card">
+          <canvas class="header-bg" width="250" height="70" blur-image.bind="image"></canvas>
+          <div class="avatar">
+            <img src.bind="user.ProfilePictureUrl" crossorigin ref="image"/>
+          </div>
+          <div class="content">
+            <p class="name">${user.FirstName} ${user.LastName}</p>
+            <p><a target="_blank" class="btn btn-default" href.bind="user.location">Contact</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
