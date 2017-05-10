@@ -1,0 +1,50 @@
+<template>
+  <div class="navbar-header pull-right" style="position: absolute; right: 20px; top: 10px;">
+    <div ng-show="user" class="pull-right">
+      <div class="btn-group" dropdown="">
+        <button type="button" class="btn btn-white dropdown-toggle" dropdown-toggle="" style="background: transparent; padding: 1px; text-align: left;"
+          aria-haspopup="true" aria-expanded="false">
+                            <img class="pull-left img-circle" style="width: 40px; height: 40px; margin: 4px;"  src="http://localhost:9001/employees/1101/picture">
+                            <div class="pull-left ng-binding" style="padding: 5px 10px;">
+                                <strong class="ng-binding"> Andreas Caspers</strong>&nbsp;<!-- ngIf: isExternalMode() --><br>
+                                Lead Software Architect<span ng-show="user.Title.length > 40" class="ng-hide">...</span>&nbsp;<span class="caret"></span>
+                            </div>
+                        </button>
+        <ul class="dropdown-menu pull-right" role="menu">
+          <li><a href="/employees/aca"><i class="fa fa-user"></i>&nbsp; My Profile</a></li>
+          <li class="divider"></li>
+          <li><a href="/settings"><i class="fa fa-gear"></i>&nbsp; Settings</a></li>
+          <li><a href="/settings"><i class="fa fa-bell-o"></i>&nbsp; Alerts</a></li>
+          <li class="divider"></li>
+          <li><a href="#" ng-click="toggleExternalMode()" title="No sensitive data is shown. Can be used for demos or at customer site."><i class="fa fa-lock" ng-class="isExternalMode() ? 'fa-check' : 'fa'"></i>&nbsp; Customer Demo Mode</a></li>
+          <li class="divider"></li>
+          <li><a href="#" ng-click="sendFeedback()"><i class="fa fa-envelope-o"></i>&nbsp; Send Feedback</a></li>
+          <li><a href="/about">About Zühlke Insight</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    alert("Executed when the template is activated.");
+  </script>
+</template>
+
+<script type="text/javascript">
+    customElements.define('insight-profile', class extends HTMLElement {
+        constructor() {
+            super(); // always call super() first in the ctor.
+
+            // load the template
+            var template = document.querySelector('link[rel=import]').import.querySelector('#template');
+            var templateBaseUrl = template.baseURI;
+            var clone = document.importNode(template.content, true);
+
+            this.appendChild(clone);
+
+            // Attach a shadow root to <insight-profile>.
+            // const shadowRoot = this.attachShadow({ mode: 'open' });
+            // shadowRoot.appendChild(clone);
+        }
+    });
+</script>
