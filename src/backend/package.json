@@ -1,0 +1,14 @@
+{
+  "name": "ntlmproxy",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js 9001"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "httpntlm": "^1.7.5"
+  }
+}

@@ -1,36 +1,38 @@
+#addin Cake.Yarn
+
 var target = Argument("target", "Default");
 
-var sourceDir = @".\src";
-var projectDir = System.IO.Path.Combine(sourceDir, "Zuehlke.ProfileSystem");
-var project = "Zuehlke.ProfileSystem.csproj";
+var sourceDir = @"./src";
+var backendDir = sourceDir + @"/backend";
+var clientDir = sourceDir + @"/client";
 
-var runSettings = new DotNetCoreRunSettings
-{
-    WorkingDirectory = projectDir
-};
-
-Task("Restore")
+Task("Restore:Backend")
     .Does(() =>
 {
-    DotNetCoreRestore(sourceDir);
+    Yarn.FromPath(backendDir).Install();
 });
 
-Task("Build")
-    .IsDependentOn("Restore")
-    .Does(() =>
+Task("Restore:Client")
+  .Does(() =>
 {
-    DotNetCoreBuild(sourceDir);
+  Yarn.FromPath(clientDir).Install();
 });
 
-Task("Start")
-    .IsDependentOn("Build")
+Task("Start:Client")
+  .Does(() =>
+{
+  Yarn.FromPath(clientDir).RunScript("start");
+});
+
+Task("Start:Backend")
     .Does(() =>
 {
-    DotNetCoreRun(project,"--server.urls=http://localhost:5001/", runSettings);
+    Yarn.FromPath(backendDir).RunScript("start");
 });
 
 Task("Default")
-    .IsDependentOn("Build")
+    .IsDependentOn("Start:Client")
+    .IsDependentOn("Start:Backend")
     .Does(() =>
 {
 });
