@@ -18,32 +18,36 @@ class Profile extends HTMLElement {
             this.getElementsByClassName('profile-title')[0].innerHTML = user.Title;
         });
 
+        // Fetch menu data (permitted apps)
+        //  -> To be added later on
+        
         this.innerHTML = `
         <div class="navbar-header pull-right" style="position: absolute; right: 20px; top: 10px;">
-            <div ng-show="user" class="pull-right">
+          <div class="pull-right">
             <div class="btn-group" dropdown="">
-                <button type="button" class="btn btn-white dropdown-toggle" dropdown-toggle="" style="background: transparent; padding: 1px; text-align: left;"
+              <button type="button" class="btn btn-white dropdown-toggle" dropdown-toggle="" style="background: transparent; padding: 1px; text-align: left;"
                 aria-haspopup="true" aria-expanded="false">
-                                    <img class="pull-left img-circle profile-image" style="width: 40px; height: 40px; margin: 4px;"  >
-                                    <div class="pull-left ng-binding" style="padding: 5px 10px;">
-                                        <strong class="ng-binding profile-name"></strong>&nbsp;<!-- ngIf: isExternalMode() --><br>
-                                        <span class="profile-title"></span><span ng-show="user.Title.length > 40" class="ng-hide">...</span>&nbsp;<span class="caret"></span>
-                                    </div>
-                                </button>
-                <ul class="dropdown-menu pull-right" role="menu">
+                <img class="pull-left img-circle profile-image" style="width: 40px; height: 40px; margin: 4px;"  >
+                <div class="pull-left" style="padding: 5px 10px;">
+                    <strong class="profile-name"></strong>&nbsp;<br>
+                    <span class="profile-title"></span><span ng-show="user.Title.length > 40" class="ng-hide">...</span>&nbsp;<span class="caret"></span>
+                </div>
+              </button>
+              <ul class="dropdown-menu pull-right" role="menu">
                 <li><a href="/employees/aca"><i class="fa fa-user"></i>&nbsp; My Profile</a></li>
                 <li class="divider"></li>
                 <li><a href="/settings"><i class="fa fa-gear"></i>&nbsp; Settings</a></li>
                 <li><a href="/settings"><i class="fa fa-bell-o"></i>&nbsp; Alerts</a></li>
                 <li class="divider"></li>
-                <li><a href="#" ng-click="toggleExternalMode()" title="No sensitive data is shown. Can be used for demos or at customer site."><i class="fa fa-lock" ng-class="isExternalMode() ? 'fa-check' : 'fa'"></i>&nbsp; Customer Demo Mode</a></li>
+                <li><a href="#" title="No sensitive data is shown. Can be used for demos or at customer site."><i class="fa fa-lock"></i>&nbsp; Customer Demo Mode</a></li>
                 <li class="divider"></li>
-                <li><a href="#" ng-click="sendFeedback()"><i class="fa fa-envelope-o"></i>&nbsp; Send Feedback</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i>&nbsp; Send Feedback</a></li>
                 <li><a href="/about">About Zühlke Insight</a></li>
-                </ul>
+              </ul>
             </div>
-            </div>
-        </div>`;
+          </div>
+        </div>
+      `;
     }
 }
 
