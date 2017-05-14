@@ -3,6 +3,9 @@ const Link = (link, activeApp) => {
     return `<a href="/" class="${active}">${link}</a>`;
 };
 
+const baseUrl = 'http://localhost:9001/insight';
+const cdnUrl = 'http://localhost:9000/insight'
+
 class Profile extends HTMLElement {
     connectedCallback() {
         this.render();
@@ -10,10 +13,10 @@ class Profile extends HTMLElement {
 
     render() {
         // Fetch profile data from insight
-        fetch('http://localhost:9001/user').then(r => {
+        fetch(`${baseUrl}/user`).then(r => {
             return r.json();
         }).then(user => {
-            this.getElementsByClassName('profile-image')[0].setAttribute('src', `http://localhost:9001/employees/${user.Id}/picture`);
+            this.getElementsByClassName('profile-image')[0].setAttribute('src', `${baseUrl}/employees/${user.Id}/picture`);
             this.getElementsByClassName('profile-name')[0].innerHTML = `${user.FirstName} ${user.LastName}`;
             this.getElementsByClassName('profile-title')[0].innerHTML = user.Title;
         });
@@ -60,7 +63,7 @@ class Header extends HTMLElement {
         const activeApp = this.getAttribute('activeApp');
         this.innerHTML = ` <div class="nav-panel" style="border-bottom-color: #d3d3d3;">
         <div class="clearfix">
-            <a class="pull-left" href="/"><img style="margin-top: 7px;" src="http://localhost:9000/insight/logo.png"></a>
+            <a class="pull-left" href="/"><img style="margin-top: 7px;" src="${cdnUrl}/logo.png"></a>
             <div class="pull-left" style="position: relative;">
                 <input id="search-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="search-box"
                     type="text" placeholder="Search...">

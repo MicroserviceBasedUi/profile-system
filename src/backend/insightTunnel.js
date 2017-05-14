@@ -1,15 +1,15 @@
 const httpntlm = require('httpntlm');
 const fs = require('fs');
 
-exports.tunnelInsightRequest = function (config, request, response) {
+exports.tunnelInsightRequest = function (config, request, response, address) {
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    console.log(`${request.method} ${request.url}`);
+    console.log(`${request.method} ${address}`);
 
     httpntlm.get({
-        url: config.baseUrl + request.url,
+        url: config.baseUrl + address,
         username: config.user,
         password: config.password,
         workstation: '',

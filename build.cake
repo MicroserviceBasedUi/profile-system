@@ -31,7 +31,6 @@ Task("Start:Backend")
 });
 
 Task("Default")
-    .IsDependentOn("Start:Client")
     .IsDependentOn("Start:Backend")
     .Does(() =>
 {
